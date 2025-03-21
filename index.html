@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+    <title>Floodscape / Julien Cheseaux</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.4make , minimum-scale=0.4, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="./error.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inconsolata&amp;v1" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Candal&amp;v1" />
+    <script type="text/javascript" src="pano2vr_player.js"></script>
+</head>
+<body>
+<div id="container">
+    <div id="stage" class="stage">
+        <div id="clouds" class="stage"></div>
+    </div>
+    <div id="ticket">
+        <section id="ticket_left">
+            <p class="error-title">Perdus dans l'espace</p>
+            <p class="error-dest">Destination inconnue</p>
+            <p class="error-type">Erreur 503</p>
+            <p class="ouups">Ouuups!</p>
+            <p class="text5_a">DE</p>
+            <p class="text6_a">quelque part</p>
+            <p class="text7_a">A</p>
+            <p class="text8_a">nulle part</p>
+            <p class="text9_a">Siège</p>
+            <p class="text10_a">503</p>
+            <p class="text11_a">Tentez une autre destination</p>
+            <nav>
+                <ul>
+                    <li><a href="https://www.youtube.com/floodscape/" target="_blank">Youtube</a></li>
+                    <li><a href="https://www.facebook.com/floodscape/" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.linkedin.com/in/juliencheseaux/" target="_blank">Linkedin</a></li>
+                    <li><a href="https://www.instagram.com/juliencheseaux/" target="_blank">Instagram</a></li>
+                </ul>
+            </nav>
+        </section>
+        <section id="ticket_right">
+            <p class="text3_b">DE</p>
+            <p class="text4_b">quelque part</p>
+            <p class="text5_b">A</p>
+            <p class="text6_b">nulle part</p>
+            <p class="text7_b">Siège</p>
+            <p class="text8_b">503</p>
+            <p class="text9_b">1</p>
+            <p class="ip" id="ip"></p>
+        </section>
+    </div>
+</div>
+<div id="container-vr" style="width:100%;height:100%;overflow:hidden;">
+</div>
+<script language="JavaScript">
+    pano = new pano2vrPlayer("container-vr");
+    window.addEventListener("load", function() {
+        pano.readConfigUrlAsync("./pano.xml");
+    });
+</script>
+<script>
+    async function getIP() {
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            document.getElementById('ip').innerText = `${data.ip}`;
+        } catch (error) {
+            console.error('Error fetching IP address:', error);
+        }
+    }
+    getIP();
+</script>
+</body>
+</html>
